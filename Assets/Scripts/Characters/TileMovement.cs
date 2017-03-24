@@ -33,6 +33,7 @@ namespace Characters
         public void MoveCurrentPath ()
         {
             isMoving = true;
+            transform.position = path[current];
         }
 
         public void Move (List<Vector2> path)
@@ -74,6 +75,7 @@ namespace Characters
 
         private void Reset ()
         {
+            isMoving = false;
             current = 0;
             path.Clear ();
         }

@@ -16,5 +16,10 @@ namespace Map
 		{
 			return position / tileSize;
 		}
+
+		public Tile GetTileAt (Vector2 position)
+		{
+			return tiles[(int)position.y].tiles[(int)position.x];
+		}
 	}
 }

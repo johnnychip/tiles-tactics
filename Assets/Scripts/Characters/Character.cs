@@ -23,6 +23,7 @@ namespace Characters
         private static List<Vector2> GetDummyPath ()
         {
             List<Vector2> path = new List<Vector2> ();
+            path.Add (new Vector2(0, 0));
             path.Add (new Vector2(0, 1));
             path.Add (new Vector2(1, 1));
             path.Add (new Vector2(2, 1));

@@ -8,6 +8,14 @@ namespace Map
         [SerializeField]
         private TerrainType terrain;
         public Character Character { get; set; }
+        public float Cost
+        {
+            get
+            {
+                //TODO: Get Cost
+                return 1f;
+            }
+        }
 
         public bool IsOccupied
         {
