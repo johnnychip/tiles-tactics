@@ -52,7 +52,8 @@ namespace Map.Detail
         {
             Vector2 worldPosition = position * tileSize;
             Tile tile = Instantiate (prefab, worldPosition, Quaternion.identity, parent);
-            return tile;
+			tile.GetComponent<Tile> ().SetParameters (1f, position.x, position.y);
+			return tile;
         }
     }
 }
