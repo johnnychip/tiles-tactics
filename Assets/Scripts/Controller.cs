@@ -48,6 +48,13 @@ public class Controller: MonoBehaviour
 			TryAddAction (new Move (5,4));
 		}
 
+		if (Input.GetMouseButtonDown (0)) 
+		{
+			Vector2 aimPoint = ShootRay ();
+
+			TryAddAction (new Move ((int)aimPoint.x,(int)aimPoint.y));
+		}
+
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			ExecuteActions ();
 		}
@@ -64,6 +71,24 @@ public class Controller: MonoBehaviour
 		} else
 			return false;
 
+	}
+
+	private Vector2 ShootRay()
+	{
+		
+		RaycastHit hit;
+		Vector3 mouse = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+		Debug.Log (mouse);
+		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+		if (Physics.Raycast (ray, out hit, 10f)) {
+			if (hit.transform.gameObject.tag == "tile")
+			{
+				Vector2 myPoint = new Vector2 (Mathf.Round (hit.transform.position.x), Mathf.Round (hit.transform.position.y));
+				return myPoint;
+			}
+		}
+		return Vector2.zero;
 	}
 
 	private void ExecuteNextAction ()

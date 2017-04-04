@@ -50,6 +50,12 @@ namespace Characters
 
 			path = pathFinding.PathFinding (myPosition, tile);
 
+			if (path.Count <= 0) {
+			
+				onFinish ();
+				return;
+
+			}
             movement.Move (path);
 
 			StartCoroutine (WaitForMoveCompleted (onFinish));
@@ -90,7 +96,7 @@ namespace Characters
 			List<Map.Tile> targets = GetTargets (actualTile, 2);
 			foreach (Map.Tile tile in targets) 
 			{
-
+				Debug.Log (tile.gameObject.transform.position);
 				if (tile.Character != null) {
 					tile.Character.DealDamage (attack);
 				}
@@ -123,13 +129,15 @@ namespace Characters
 		{
 			List<Map.Tile> targets = new List<Map.Tile>();
 
+			Debug.Log ("actual nodo " + node.transform.position);
+
 			for (int x = -range; x <= range; x++)
 			{
 				for (int y = -range; y <= range; y++)
 				{
 					if (x == 0 && y == 0)
 						continue;
-
+					Debug.Log (x + " " + y);
 					int checkX = Mathf.RoundToInt(node.transform.position.x) + x;
 					int checkY = Mathf.RoundToInt(node.transform.position.x) + y;
 
@@ -138,6 +146,9 @@ namespace Characters
 						targets.Add(mytileMap.GetTileAt(new Vector2 ((float)checkX, (float)checkY)));
 					}
 				}
+
+				if (targets.Contains (node))
+					targets.Remove (node);
 			}
 
 			return targets;

@@ -8,7 +8,7 @@ namespace Map
         [SerializeField]
         private TerrainType terrain;
 
-		private Character character;
+		public Character character;
 
 		public Character Character { 
 			get{
