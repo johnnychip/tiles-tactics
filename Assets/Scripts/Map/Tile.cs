@@ -7,14 +7,43 @@ namespace Map
     {
         [SerializeField]
         private TerrainType terrain;
-        public Character Character { get; set; }
+
+		private Character character;
+
+		public Character Character { 
+			get{
+				
+				return character; 
+			} 
+			set{
+				Debug.Log ("paso");
+				character = value; 
+				if (character != null)
+					cost = 0f;
+				else
+					cost = 1f;
+			} 
+		}
+
+		[SerializeField]
+		private float cost;
+
+		void Awake()
+		{if (character != null)
+				cost = 0f;
+			else
+				cost = 1f;
+		}
+
         public float Cost
         {
             get
             {
                 //TODO: Get Cost
-                return 1f;
+				return cost;
             }
+			set{ cost = value;
+			}
         }
 
         public bool IsOccupied

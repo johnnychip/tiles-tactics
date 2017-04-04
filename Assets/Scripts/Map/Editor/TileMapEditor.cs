@@ -36,6 +36,7 @@ namespace Map.Detail
         {
             Tilemap map = (Tilemap)target;
             map.tiles = tiles;
+
         }
 
         private TileRow GenerateRow (int y, float tileSize, Transform parent)
